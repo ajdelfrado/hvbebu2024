@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffccf9; /* Light pink background */
+            color: #6a0dad; /* Purple text color */
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+        }
+        .container {
+            max-width: 100%;
+            margin: 20px auto;
+            background-color: #f2e2ff; /* Light purple background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        button {
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+        .yes {
+            background-color: #ff77aa; /* Pink */
+            color: white;
+        }
+        .no {
+            background-color: #9370db; /* Purple */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Will you be my Valentine?</h2>
+        <button class="yes" onclick="window.location.href='blossom/dist/blossom.html';">Yes</button>
+        <button class="no" onclick="moveButton()">No</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noButton = document.querySelector('.no');
+            const container = document.querySelector('.container');
+            let newX, newY;
+
+            do {
+                newX = Math.random() * (container.offsetWidth - noButton.offsetWidth);
+                newY = Math.random() * (container.offsetHeight - noButton.offsetHeight);
+            } while (newX < 10 || newY < 10); // Ensure button doesn't stick to edges
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>

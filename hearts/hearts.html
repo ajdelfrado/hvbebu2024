@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta viewport="width=device-width, initial-scale=1.0">
+    <title>Scattered Hearts Popping</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0; /* Light background */
+        }
+        .heart {
+            position: absolute;
+            bottom: -50px; /* Start off-screen */
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            opacity: 0.5; /* Initial visibility */
+            animation: floatAndPop 5s linear forwards; /* Adjust timing as needed */
+        }
+        .heart::before, .heart::after {
+            content: "";
+            background-color: red;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            position: absolute;
+        }
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: 15px;
+        }
+        .heart span {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid lightgreen; /* Light green circle around the heart */
+            position: absolute;
+            top: -10px; left: -10px;
+            z-index: -1;
+        }
+        @keyframes floatAndPop {
+            0% {
+                bottom: 0;
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: rotate(0deg);
+            }
+            100% {
+                bottom: 90%; /* Move to middle or top */
+                transform: rotate(360deg) scale(1.5); /* Rotate and scale for pop effect */
+                opacity: 0; /* Disappear */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+function addHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = `${Math.random() * window.innerWidth}px`;
+    heart.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation for scattered effect
+
+    const circle = document.createElement('span');
+    heart.appendChild(circle);
+
+    document.body.appendChild(heart);
+
+    // Clean up the heart after animation to keep the DOM light
+    setTimeout(() => {
+        heart.remove();
+    }, 5000); // Adjust to match animation duration
+}
+
+// Create new hearts at random intervals
+setInterval(addHeart, 500);
+</script>
+
+</body>
+</html>
